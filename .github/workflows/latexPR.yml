@@ -31,15 +31,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Check If Page compiles (Tectonic)
-        run: tectonic "$FILE" > CompileOut 2>&1
+        run: echo "CompileOutput=$(tectonic $FILE)" >> $GITHUB_ENV
       - name: If Check failed, Comment error
         if: ${{ failure() }}
         uses: ben-z/actions-comment-on-issue@1.0.2
         with:
-          message: "# There was an error in submited code\n ${{ cat CompileOut }}"
+          message: "# There was an error in submited code\n ${{ env.CompileOutput }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Remove Compile Output
-        run: rm CompileOut
       - name: Update Raw Page 
         run: .github/scripts/updateRawPage.sh $FILE
       - name: Create PR
