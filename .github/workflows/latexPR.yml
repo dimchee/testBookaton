@@ -33,8 +33,7 @@ jobs:
       - name: Check If Page compiles (Tectonic)
         run: |
           echo 'CompileOutput<<EOF' >> $GITHUB_ENV
-          tectonic $FILE >> $GITHUB_ENV; true
-          STATUS=${PIPESTATUS[0]}
+          tectonic $FILE >> $GITHUB_ENV; STATUS=$?
           echo 'EOF' >> $GITHUB_ENV
           exit $STATUS
       - name: If Check failed, Comment error
