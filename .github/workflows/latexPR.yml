@@ -31,7 +31,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Check If Page compiles (Tectonic)
-        run: tectonic $FILE | awk '{ print "CompileOutput="$1 }' >> $GITHUB_ENV; test ${PIPESTATUS[0]} -eq 0
+        run: tectonic $FILE | awk '{ print "CompileOutput=<<EOF"$1"EOF" }' >> $GITHUB_ENV; test ${PIPESTATUS[0]} -eq 0
       - name: If Check failed, Comment error
         if: ${{ failure() }}
         uses: ben-z/actions-comment-on-issue@1.0.2
