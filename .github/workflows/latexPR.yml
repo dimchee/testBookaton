@@ -36,7 +36,7 @@ jobs:
         if: ${{ failure() }}
         uses: ben-z/actions-comment-on-issue@1.0.2
         with:
-          message: "*There was an error in submited code:*\n $(cat CompileOut)"
+          message: "# There was an error in submited code\n ${{ cat CompileOut }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Remove Compile Output
         run: rm CompileOut
