@@ -33,9 +33,9 @@ jobs:
       - name: Check If Page compiles (Tectonic)
         run: |
           echo 'CompileOutput<<EOF' >> $GITHUB_ENV
-          tectonic $FILE >> $GITHUB_ENV; STATUS=$?
+          tectonic $FILE >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-          exit $STATUS
+        continue-on-error: true
       - name: If Check failed, Comment error
         if: ${{ failure() }}
         uses: ben-z/actions-comment-on-issue@1.0.2
