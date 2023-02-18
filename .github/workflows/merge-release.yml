@@ -40,5 +40,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Current version of Book "
+          title: "Current version of Book"
           files: Book.pdf
