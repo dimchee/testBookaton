@@ -30,7 +30,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Test If Page compiles (Tectonic)
-        run: tectonic $FILE
+        run: tectonic "$FILE"
       - name: Update Raw Page 
         run: .github/scripts/updateRawPage.sh $FILE
       - name: Create PR
