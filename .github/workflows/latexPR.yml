@@ -33,7 +33,7 @@ jobs:
       - name: Check If Page compiles (Tectonic)
         run: |
           echo 'CompileOutput<<EOF' >> $GITHUB_ENV
-          tectonic $FILE | cat >> $GITHUB_ENV; test ${PIPESTATUS[0]} -eq 0
+          tectonic $FILE | cat >> $GITHUB_ENV
           STATUS=${PIPESTATUS[0]}
           echo 'EOF' >> $GITHUB_ENV
           exit $STATUS
