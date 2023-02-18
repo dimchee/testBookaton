@@ -29,8 +29,12 @@ jobs:
       - uses: wtfjoke/setup-tectonic@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Test If Page compiles (Tectonic)
+      - name: Check If Page compiles (Tectonic)
         run: tectonic "$FILE"
+      - name: If Check failed, Comment error
+        if: ${{ failure() }}
+        run: echo "couldn't compile $FILE"
+
       - name: Update Raw Page 
         run: .github/scripts/updateRawPage.sh $FILE
       - name: Create PR
